@@ -1,0 +1,55 @@
+
+<div *ngIf="loadingImages || loadingProducts" class="d-flex justify-content-center align-items-center" style="height:100px;">
+  <div class="spinner-border"></div>
+</div>
+
+
+
+  <div class="row text-center text-black-50">
+    <div class="col-lg-7 mx-auto">
+      <h1 class="display-4">Beer List</h1>
+    </div>
+  </div>
+  <div class="container">
+    <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="btn btn-link text-info"><i class="fa fa-search"></i></span>
+        </div>
+        <input type="search" [(ngModel)]="searchText" (ngModelChange)="searchProduct($event)"  placeholder="What're you searching for?"  class="form-control border-0 bg-light">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <!-- List group-->
+      <ul class="list-group ">
+        <!-- list group item-->
+        <ng-container *ngFor="let product of productsListToDisplay; let i = index">
+          <li class="list-group-item beer-item mb-4 shadow" *ngIf="i>=minPageIndex && i<maxPageIndex" >
+            <!-- Custom content-->
+            <div class="media align-items-lg-center flex-column flex-lg-row p-3 " >
+              <img src="{{getImage(i)}}" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 mx-5">
+              <div class="media-body order-2 ">
+                <h5 class="mt-0 font-weight-bold mb-2">{{product['name']}}</h5>
+                <p class="font-italic text-muted mb-0 small">Alcohol By Volume : {{product['abv']}} | Style : {{product['style'] }} | Ounces : {{product['ounces']}}</p>
+                <div class="d-flex align-items-center justify-content-between mt-1">
+                  <h6 class="font-weight-bold my-2">ID : {{product['id']}}</h6>
+                </div>
+              </div>
+            </div> <!-- End -->
+          </li> <!-- End -->
+        </ng-container>
+      </ul> <!-- End -->
+    </div>
+
+  </div>
+<div class=" container pt-5">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link text-reset" href="#" (click)="previousPage()" *ngIf="currentPage!=1">Previous</a></li>
+      <li class="page-item"><a class="page-link text-reset" href="#" (click)="nextPage()" *ngIf="currentPage<productsListToDisplay.length/20">Next</a></li>
+    </ul>
+  </nav>
+</div>
+

@@ -1,0 +1,26 @@
+body {
+  background: linear-gradient(to right, #c04848, #480048);
+  min-height: 100vh
+}
+
+.text-gray {
+  color: #aaa
+}
+
+img {
+  height: 170px;
+  width: 140px
+}
+
+.center-spinner {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.beer-item{
+  border-radius: 1rem;
+  background: none;
+
+}
