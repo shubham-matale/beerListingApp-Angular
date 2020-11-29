@@ -77,14 +77,16 @@ export class BeerListComponent implements OnInit {
   }
 
   searchProduct(event){
-    console.log(event);
-    if(this.searchText.length>=3){
+    if(this.searchText.length>0){
       this.productsListToDisplay = [];
       this.productsListToDisplay = this.actualProductsList.filter((element,index)=>{
         if (element['name'].toLowerCase().includes(this.searchText.toLowerCase().trim())){
           return true;
         }
       });
+      this.currentPage=1;
+    }else {
+      this.productsListToDisplay= this.actualProductsList
     }
     console.log(this.productsListToDisplay)
   }
